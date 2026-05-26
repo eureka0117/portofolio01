@@ -3,264 +3,490 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ammar Mahzuz - Portfolio</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Enterprise Fashion Analytics - Animated Tier</title>
+    <!-- Tailwind CSS Enterprise Tier -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js Modern Engine -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body { 
+            font-family: 'Inter', sans-serif; 
+        }
+        /* Animasi Khas Dashboard Modern */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(16px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .animate-fade-up {
+            animation: fadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+    </style>
 </head>
-<body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-brand">
-                <span class="brand-icon">AM</span>
-                <span class="brand-text">Ammar Mahzuz</span>
-            </div>
-            <div class="nav-menu" id="navMenu">
-                <a href="#home" class="nav-link active">Beranda</a>
-                <a href="#about" class="nav-link">Tentang</a>
-                <a href="#skills" class="nav-link">Keahlian</a>
-                <a href="#projects" class="nav-link">Project</a>
-                <a href="#contact" class="nav-link">Hubungi</a>
-            </div>
-            <div class="nav-right">
-                <div class="nav-shortcuts">
-                    <a href="#about" class="nav-shortcut" title="Tentang" data-tooltip="Tentang">
-                        <i class="fas fa-user"></i>
-                    </a>
-                    <a href="#skills" class="nav-shortcut" title="Keahlian" data-tooltip="Keahlian">
-                        <i class="fas fa-star"></i>
-                    </a>
-                    <a href="#projects" class="nav-shortcut" title="Project" data-tooltip="Project">
-                        <i class="fas fa-briefcase"></i>
-                    </a>
-                    <a href="#contact" class="nav-shortcut" title="Hubungi" data-tooltip="Hubungi">
-                        <i class="fas fa-envelope"></i>
-                    </a>
-                </div>
-                <div class="nav-divider"></div>
-                <button class="theme-toggle" id="themeToggle">
-                    <i class="fas fa-moon"></i>
-                </button>
-                <button class="menu-toggle" id="menuToggle">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-            </div>
-        </div>
-    </nav>
+<body class="bg-gray-50 text-gray-800 antialiased overflow-hidden">
 
-    <!-- Home Section -->
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <div class="hero-text fade-in">
-                <h1 class="hero-title">
-                    <span class="title-word">Halo,</span>
-                    <span class="title-word">Saya</span>
-                    <span class="title-word highlight">Ammar Mahzuz</span>
-                </h1>
-                <p class="hero-subtitle">Mahasiswa • Web Developer • UI/UX Designer • 3D Animator</p>
-                <div class="hero-buttons">
-                    <a href="#projects" class="btn btn-primary">Lihat Karya Saya</a>
-                    <a href="#contact" class="btn btn-secondary">Hubungi Saya</a>
-                </div>
-            </div>
-            <div class="hero-visual fade-in">
-                <div class="avatar-wrapper">
-                    <div class="avatar">AM</div>
-                    <div class="avatar-ring"></div>
-                </div>
-                <div class="floating-cards">
-                    <div class="float-card" style="--delay: 0s">
-                        <i class="fas fa-code"></i>
-                    </div>
-                    <div class="float-card" style="--delay: 0.2s">
-                        <i class="fab fa-figma"></i>
-                    </div>
-                    <div class="float-card" style="--delay: 0.4s">
-                        <i class="fas fa-cube"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="scroll-indicator">
-            <div class="mouse">
-                <div class="wheel"></div>
-            </div>
-            <div class="arrow">
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-    </section>
+    <!-- NOTIFIKASI TOAST (Animasi Pop-up Modern) -->
+    <div id="toast" class="fixed bottom-5 right-5 z-[99] transform translate-y-20 opacity-0 bg-slate-900 text-white px-5 py-3 rounded-xl shadow-2xl flex items-center space-x-3 transition-all duration-300 pointer-events-none">
+        <span id="toast-icon" class="text-emerald-400">✨</span>
+        <span id="toast-msg" class="text-xs font-medium tracking-wide">Data berhasil diperbarui</span>
+    </div>
 
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="container">
-            <div class="section-header fade-in">
-                <h2 class="section-title">Tentang Saya</h2>
-                <div class="title-underline"></div>
-            </div>
-            <div class="about-content">
-                <div class="about-text fade-in">
-                    <p class="highlight-text">
-                        Saya adalah mahasiswa prodi sistem informasi universitas komputama Cilacap yang sangat antusias dalam menambah ilmu baru.
-                    </p>
-                    <p>
-                        Saya ahli di bidang web development, ui ux design dan juga animator, khususnya animasi 3d. Saya memiliki passion tinggi dalam menciptakan pengalaman digital yang menarik dan interaktif.
-                    </p>
-                </div>
-                <div class="about-stats fade-in">
-                    <div class="stat-item">
-                        <div class="stat-number">3+</div>
-                        <div class="stat-label">Keahlian Utama</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">2+</div>
-                        <div class="stat-label">Project Selesai</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">100%</div>
-                        <div class="stat-label">Dedikasi</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section id="skills" class="skills">
-        <div class="container">
-            <div class="section-header fade-in">
-                <h2 class="section-title">Keahlian Saya</h2>
-                <div class="title-underline"></div>
-            </div>
-            <div class="skills-grid">
-                <div class="skill-card fade-in" style="--delay: 0s">
-                    <div class="skill-icon-wrapper">
-                        <i class="fab fa-js"></i>
-                    </div>
-                    <h3>JavaScript</h3>
-                    <p>Web Development & Programming</p>
-                    <div class="skill-bar">
-                        <div class="skill-progress" style="width: 85%"></div>
-                    </div>
-                </div>
-                <div class="skill-card fade-in" style="--delay: 0.1s">
-                    <div class="skill-icon-wrapper">
-                        <i class="fab fa-figma"></i>
-                    </div>
-                    <h3>Figma</h3>
-                    <p>UI/UX Design</p>
-                    <div class="skill-bar">
-                        <div class="skill-progress" style="width: 80%"></div>
-                    </div>
-                </div>
-                <div class="skill-card fade-in" style="--delay: 0.2s">
-                    <div class="skill-icon-wrapper">
-                        <i class="fas fa-cube"></i>
-                    </div>
-                    <h3>Blender 3D</h3>
-                    <p>3D Animation & Modeling</p>
-                    <div class="skill-bar">
-                        <div class="skill-progress" style="width: 75%"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects" class="projects">
-        <div class="container">
-            <div class="section-header fade-in">
-                <h2 class="section-title">Project Saya</h2>
-                <div class="title-underline"></div>
-            </div>
-            <div class="projects-grid">
-                <div class="project-card fade-in" style="--delay: 0s">
-                    <div class="project-header">
-                        <div class="project-icon">
-                            <i class="fas fa-globe"></i>
+    <div class="flex h-screen overflow-hidden relative">
+        
+        <!-- SIDEBAR PERUSAHAAN (Responsif dengan Animasi Slide) -->
+        <div id="sidebar" class="fixed inset-y-0 left-0 z-50 w-72 bg-slate-900 flex flex-col justify-between shadow-2xl transform -translate-x-full lg:translate-x-0 lg:static lg:z-auto transition-transform duration-300 ease-in-out">
+            <div>
+                <!-- Brand Logo & Tombol Close (Mobile Only) -->
+                <div class="p-6 border-b border-slate-800 flex justify-between items-center">
+                    <div class="flex items-center space-x-3">
+                        <div class="bg-indigo-600 p-2 rounded-xl text-white shadow-lg shadow-indigo-600/30">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
                         </div>
-                        <div class="project-status">Active</div>
-                    </div>
-                    <h3>Website Kampus (SIMAK)</h3>
-                    <p>Membuat website kampus dengan fitur lengkap seperti sistem informasi akademik mahasiswa (SIMAK). Menggunakan teknologi web modern untuk user experience yang optimal.</p>
-                    <div class="project-tags">
-                        <span class="tag">HTML</span>
-                        <span class="tag">CSS</span>
-                        <span class="tag">JavaScript</span>
-                    </div>
-                </div>
-                <div class="project-card fade-in" style="--delay: 0.1s">
-                    <div class="project-header">
-                        <div class="project-icon">
-                            <i class="fas fa-video"></i>
+                        <div>
+                            <h1 class="text-lg font-bold text-white tracking-tight">EUREKA <span class="text-indigo-400 font-light">CLOTH</span></h1>
+                            <p class="text-[10px] text-slate-400 font-medium tracking-widest uppercase">Fashion Design By EUREKA</p>
                         </div>
-                        <div class="project-status">Showcase</div>
                     </div>
-                    <h3>Animasi 3D</h3>
-                    <p>Menciptakan animasi 3D yang menakjubkan menggunakan Blender. Dari character animation, motion graphics, hingga visual effects yang profesional.</p>
-                    <div class="project-tags">
-                        <span class="tag">Blender</span>
-                        <span class="tag">3D</span>
-                        <span class="tag">Animation</span>
-                    </div>
+                    <button onclick="toggleSidebar()" class="lg:hidden text-slate-400 hover:text-white focus:outline-none">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    </button>
                 </div>
+                
+                <!-- Navigasi -->
+                <nav class="p-4 space-y-1.5 mt-4">
+                    <button id="btn-dashboard" onclick="switchTab('dashboard')" class="w-full flex items-center justify-between px-4 py-3 rounded-xl bg-indigo-600 text-white font-medium shadow-md shadow-indigo-600/10 transition duration-300">
+                        <div class="flex items-center space-x-3">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                            <span class="text-sm">Konsol Analitik</span>
+                        </div>
+                        <span class="text-[10px] bg-indigo-500/30 text-indigo-200 px-2 py-0.5 rounded-full font-mono">LIVE</span>
+                    </button>
+                    <button id="btn-produk" onclick="switchTab('produk')" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-slate-400 hover:bg-slate-800 hover:text-slate-100 font-medium transition duration-300">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg>
+                        <span class="text-sm">Manajemen Inventaris</span>
+                    </button>
+                </nav>
             </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <div class="section-header fade-in">
-                <h2 class="section-title">Hubungi Saya</h2>
-                <div class="title-underline"></div>
-            </div>
-            <p class="contact-subtitle fade-in">Mari terhubung melalui media sosial atau email</p>
             
-            <div class="contact-links fade-in">
-                <a href="mailto:ammarmahzuz@mail.com" class="contact-item contact-email" title="Email">
-                    <div class="contact-icon-wrapper">
-                        <i class="fas fa-envelope"></i>
-                    </div>
-                    <span class="contact-text">Email</span>
-                </a>
-                
-                <a href="https://api.whatsapp.com/send/?phone=6285643094039&text&type=phone_number&app_absent=0&wame_ctl=1" target="_blank" class="contact-item contact-whatsapp" title="WhatsApp">
-                    <div class="contact-icon-wrapper">
-                        <i class="fab fa-whatsapp"></i>
-                    </div>
-                    <span class="contact-text">WhatsApp</span>
-                </a>
-                
-                <a href="https://www.instagram.com/rammahr16?igsh=Z2ZxMXU0ZWlxMHEy" target="_blank" class="contact-item contact-instagram" title="Instagram">
-                    <div class="contact-icon-wrapper">
-                        <i class="fab fa-instagram"></i>
-                    </div>
-                    <span class="contact-text">Instagram</span>
-                </a>
-                
-                <a href="https://youtube.com/@ammarmahzuz7254?si=USGzGLlos97mZvbC" target="_blank" class="contact-item contact-youtube" title="YouTube">
-                    <div class="contact-icon-wrapper">
-                        <i class="fab fa-youtube"></i>
-                    </div>
-                    <span class="contact-text">YouTube</span>
-                </a>
+            <!-- User Profile footer -->
+            <div class="p-4 border-t border-slate-800 bg-slate-950/40 flex items-center space-x-3">
+                <div class="w-9 h-9 rounded-full bg-indigo-100 flex items-center justify-center font-bold text-indigo-700 text-sm">HQ</div>
+                <div>
+                    <p class="text-xs font-semibold text-slate-200">Divisi Logistik</p>
+                    <p class="text-[10px] text-slate-500">Pusat Distribusi Utama</p>
+                </div>
             </div>
         </div>
-    </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2026 Ammar Mahzuz. All rights reserved.</p>
-            <div class="footer-glow"></div>
+        <!-- OVERLAY UNTUK SIDEBAR MOBILE -->
+        <div id="overlay" onclick="toggleSidebar()" class="fixed inset-0 bg-slate-950/50 backdrop-blur-sm z-40 hidden lg:hidden transition-opacity duration-300 opacity-0"></div>
+
+        <!-- AREA KONTEN UTAMA -->
+        <div class="flex-1 flex flex-col overflow-y-auto">
+            
+            <!-- TOPBAR GLOBAL (Dengan Hamburger Menu Responsif) -->
+            <header class="bg-white border-b border-gray-200/80 px-6 lg:px-8 py-5 flex justify-between items-center shadow-sm sticky top-0 z-30">
+                <div class="flex items-center space-x-4">
+                    <!-- Tombol Hamburger (Mobile Only) -->
+                    <button onclick="toggleSidebar()" class="lg:hidden p-2 rounded-xl bg-gray-100 hover:bg-gray-200 text-gray-600 transition">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                    </button>
+                    <div>
+                        <p class="text-xs font-medium text-gray-400 uppercase tracking-wider" id="breadcrumb">Ikhtisar / Konsol Analitik</p>
+                        <h2 id="page-title" class="text-xl lg:text-2xl font-bold text-gray-900 tracking-tight mt-0.5">Ringkasan Eksekutif</h2>
+                    </div>
+                </div>
+                
+                <div class="flex items-center space-x-3 bg-gray-50 border border-gray-200 px-4 py-2 rounded-xl">
+                    <span class="relative flex h-2 w-2">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                    </span>
+                    <span class="text-xs font-semibold text-gray-600 tracking-wide hidden sm:inline">Data Teroptimasi Lokal</span>
+                </div>
+            </header>
+
+            <!-- ISI METRIK & FORM -->
+            <main class="p-4 lg:p-8 space-y-8 max-w-7xl w-full mx-auto">
+                
+                <!-- TAB 1: DASHBOARD ANALITIK -->
+                <div id="tab-dashboard" class="tab-content active animate-fade-up space-y-8">
+                    <!-- Grid Kartu Metrik dengan Hover Glow & Scale Up -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+                        <!-- Card 1 -->
+                        <div class="bg-white p-6 rounded-2xl border border-gray-200/80 shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-indigo-200 transition-all duration-300 group">
+                            <div class="flex justify-between items-start">
+                                <span class="text-xs font-bold text-gray-400 uppercase tracking-wider">Gross Revenue</span>
+                                <span class="text-[11px] bg-emerald-50 text-emerald-600 font-semibold px-2 py-0.5 rounded-md group-hover:scale-105 transition-transform">+14.2%</span>
+                            </div>
+                            <p id="metric-revenue" class="text-2xl font-bold text-gray-900 tracking-tight mt-3">Rp 0</p>
+                            <p class="text-[11px] text-gray-400 mt-1">Akumulasi penjualan berjalan</p>
+                        </div>
+                        <!-- Card 2 -->
+                        <div class="bg-white p-6 rounded-2xl border border-gray-200/80 shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-indigo-200 transition-all duration-300 group">
+                            <div class="flex justify-between items-start">
+                                <span class="text-xs font-bold text-gray-400 uppercase tracking-wider">Volume Penjualan</span>
+                                <span class="text-[11px] bg-indigo-50 text-indigo-600 font-semibold px-2 py-0.5 rounded-md">Optimal</span>
+                            </div>
+                            <p id="metric-sold" class="text-2xl font-bold text-gray-900 tracking-tight mt-3">0 Pcs</p>
+                            <p class="text-[11px] text-gray-400 mt-1">Produk keluar gudang</p>
+                        </div>
+                        <!-- Card 3 -->
+                        <div class="bg-white p-6 rounded-2xl border border-gray-200/80 shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-indigo-200 transition-all duration-300 group">
+                            <div class="flex justify-between items-start">
+                                <span class="text-xs font-bold text-gray-400 uppercase tracking-wider">Total Katalog SKU</span>
+                                <span class="text-[11px] bg-amber-50 text-amber-600 font-semibold px-2 py-0.5 rounded-md">Varian Aktif</span>
+                            </div>
+                            <p id="metric-sku" class="text-2xl font-bold text-gray-900 tracking-tight mt-3">0 SKU</p>
+                            <p class="text-[11px] text-gray-400 mt-1">Terdaftar lintas kategori</p>
+                        </div>
+                        <!-- Card 4 -->
+                        <div class="bg-white p-6 rounded-2xl border border-gray-200/80 shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-rose-200 transition-all duration-300 group">
+                            <div class="flex justify-between items-start">
+                                <span class="text-xs font-bold text-gray-400 uppercase tracking-wider">Stok Perlu Restock</span>
+                                <span id="badge-kritis" class="text-[11px] font-semibold px-2 py-0.5 rounded-md">0</span>
+                            </div>
+                            <p id="metric-low" class="text-2xl font-bold text-gray-900 tracking-tight mt-3">0 SKU</p>
+                            <p class="text-[11px] text-gray-400 mt-1">Kuantitas di bawah batas aman</p>
+                        </div>
+                    </div>
+
+                    <!-- Grafik Dashboard Responsif -->
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                        <div class="bg-white p-6 rounded-2xl border border-gray-200/80 shadow-sm lg:col-span-2">
+                            <div class="flex justify-between items-center mb-6">
+                                <h3 class="text-sm font-bold text-gray-800 tracking-tight uppercase">Metrik Tren Penjualan Korporasi</h3>
+                                <span class="text-xs text-gray-400 font-medium">Q1-Q2 Realtime</span>
+                            </div>
+                            <div class="h-64 sm:h-72"><canvas id="chartPenjualan"></canvas></div>
+                        </div>
+                        <div class="bg-white p-6 rounded-2xl border border-gray-200/80 shadow-sm">
+                            <div class="flex justify-between items-center mb-6">
+                                <h3 class="text-sm font-bold text-gray-800 tracking-tight uppercase">Komposisi Pasar Terlaris</h3>
+                            </div>
+                            <div class="h-64 sm:h-72 flex flex-col justify-center"><canvas id="chartKategori"></canvas></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB 2: MANAJEMEN STOK -->
+                <div id="tab-produk" class="tab-content animate-fade-up space-y-6">
+                    <!-- Form Tambah Data Premium Modern -->
+                    <div class="bg-white p-6 rounded-2xl border border-gray-200/80 shadow-sm">
+                        <div class="border-b border-gray-100 pb-4 mb-5">
+                            <h3 class="text-base font-bold text-gray-900">Registrasi Inventaris Baru</h3>
+                            <p class="text-xs text-gray-400">Pastikan SKU, ukuran, dan varian warna sesuai dengan manifest fisik gudang.</p>
+                        </div>
+                        <form id="form-produk" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-5 items-end">
+                            <div class="sm:col-span-2 md:col-span-1">
+                                <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Nama Produk Pakaian</label>
+                                <input type="text" id="inp-nama" required placeholder="Contoh: Premium Linen Shirt" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-600 transition">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Kluster Kategori</label>
+                                <select id="inp-kategori" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-600 transition">
+                                    <option value="Atasan">Atasan</option>
+                                    <option value="Bawahan">Bawahan</option>
+                                    <option value="Dress">Dress</option>
+                                    <option value="Outerwear">Outerwear</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Varian (Size & Warna)</label>
+                                <input type="text" id="inp-varian" required placeholder="Contoh: XL - Midnight Black" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-600 transition">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Unit Kuantitas (Stok)</label>
+                                <input type="number" id="inp-stok" required min="0" placeholder="0" class="w-full bg-gray-50 border border-gray-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-600 transition">
+                            </div>
+                            <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-sm py-2.5 px-4 rounded-xl shadow-lg shadow-indigo-600/10 transition duration-200 transform active:scale-[0.98] sm:col-span-2 md:col-span-1">
+                                Simpan Manifest
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Tabel Data Korporat -->
+                    <div class="bg-white rounded-2xl border border-gray-200/80 shadow-sm overflow-hidden">
+                        <div class="px-6 py-5 border-b border-gray-100 flex justify-between items-center bg-gray-50/50">
+                            <div>
+                                <h3 class="text-base font-bold text-gray-900">Arsip Detil Inventaris Aktif</h3>
+                                <p class="text-xs text-gray-400 mt-0.5">Automated stock auditing threshold: <span class="font-bold text-rose-500">10 Pcs</span></p>
+                            </div>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-left border-collapse">
+                                <thead class="bg-gray-50 border-b border-gray-100 text-gray-400 uppercase text-[10px] tracking-widest font-bold">
+                                    <tr>
+                                        <th class="px-6 py-4">Nama Item Klasifikasi</th>
+                                        <th class="px-6 py-4">Kategori Klasifikasi</th>
+                                        <th class="px-6 py-4">Identitas Varian</th>
+                                        <th class="px-6 py-4">Status & Kuantitas Fisik</th>
+                                        <th class="px-6 py-4 text-center">Operasi Sistem</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tabel-produk-body" class="divide-y divide-gray-100 text-sm text-gray-600">
+                                    <!-- Terisi Otomatis via Javascript -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </main>
         </div>
-    </footer>
+    </div>
 
-    <script src="script.js"></script>
+    <!-- LOGIKA DAN INTEGRASI STATE LOKAL DENGAN MIKRO-INTERAKSI -->
+    <script>
+        // Data Default Simulasi Perusahaan Fashion
+        const dummyPakaian = [
+            { id: 1, nama: "Premium Linen Oversized Shirt", kategori: "Atasan", varian: "M - Pearl White", stok: 45 },
+            { id: 2, nama: "Premium Linen Oversized Shirt", kategori: "Atasan", varian: "L - Matcha Sage", stok: 7 }, 
+            { id: 3, nama: "Pleated Highwaist Culottes", kategori: "Bawahan", varian: "XL - Onyx Black", stok: 84 },
+            { id: 4, nama: "Fleur de-Ete Summer Dress", kategori: "Dress", varian: "S - Pastel Lilac", stok: 5 }, 
+            { id: 5, nama: "Structured Heavy Denim Jacket", kategori: "Outerwear", varian: "L - Acid Indigo", stok: 19 }
+        ];
+
+        const dummyAnalitik = {
+            pendapatan: 148900000,
+            terjual: 912,
+            trenBulanan: [24000000, 38000000, 52000000, 79000000, 112000000, 148900000],
+            kategoriTerjual: [410, 280, 142, 80]
+        };
+
+        let dataStok = JSON.parse(localStorage.getItem('corp_stok')) || dummyPakaian;
+        if(!localStorage.getItem('corp_stok')) {
+            localStorage.setItem('corp_stok', JSON.stringify(dataStok));
+        }
+
+        // FUNGSI ANIMASI SIDEBAR (RESPONSIF MOBILE)
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('overlay');
+            
+            if (sidebar.classList.contains('-translate-x-full')) {
+                sidebar.classList.remove('-translate-x-full');
+                overlay.classList.remove('hidden');
+                setTimeout(() => { overlay.classList.add('opacity-100'); }, 10);
+            } else {
+                sidebar.classList.add('-translate-x-full');
+                overlay.classList.remove('opacity-100');
+                setTimeout(() => { overlay.classList.add('hidden'); }, 300);
+            }
+        }
+
+        // FUNGSI TOAST NOTIFICATION (Animasi Pop-up)
+        function showToast(message, type = 'success') {
+            const toast = document.getElementById('toast');
+            const icon = document.getElementById('toast-icon');
+            const msg = document.getElementById('toast-msg');
+
+            msg.innerText = message;
+            icon.innerText = type === 'success' ? '✨' : '🗑️';
+            
+            // Masuk
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            // Keluar otomatis setelah 3 detik
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }
+
+        // Navigasi Tab dengan Re-Trigger Animasi CSS Fade-Up
+        function switchTab(tabName) {
+            const tabs = ['dashboard', 'produk'];
+            tabs.forEach(t => {
+                const el = document.getElementById(`tab-${t}`);
+                el.classList.remove('active');
+                // Hapus kelas animasi agar bisa di-trigger ulang saat diklik kembali
+                el.classList.remove('animate-fade-up');
+            });
+
+            const currentTab = document.getElementById(`tab-${tabName}`);
+            currentTab.classList.add('active');
+            // Trigger reflow untuk mengulang animasi CSS
+            void currentTab.offsetWidth; 
+            currentTab.add('animate-fade-up');
+            
+            document.getElementById('breadcrumb').innerText = tabName === 'dashboard' ? 'Ikhtisar / Konsol Analitik' : 'Logistik / Manajemen Inventaris';
+            document.getElementById('page-title').innerText = tabName === 'dashboard' ? 'Ringkasan Eksekutif' : 'Pusat Kendali Inventaris';
+
+            // Mengubah Style Aktif Tombol Sidebar
+            const btnDash = document.getElementById('btn-dashboard');
+            const btnProd = document.getElementById('btn-produk');
+
+            if(tabName === 'dashboard') {
+                btnDash.className = "w-full flex items-center justify-between px-4 py-3 rounded-xl bg-indigo-600 text-white font-medium shadow-md shadow-indigo-600/10 transition duration-300";
+                btnProd.className = "w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-slate-400 hover:bg-slate-800 hover:text-slate-100 font-medium transition duration-300";
+            } else {
+                btnProd.className = "w-full flex items-center px-4 py-3 rounded-xl bg-indigo-600 text-white font-medium shadow-md shadow-indigo-600/10 transition duration-300";
+                btnDash.className = "w-full flex items-center justify-between px-4 py-3 rounded-xl text-slate-400 hover:bg-slate-800 hover:text-slate-100 font-medium transition duration-300";
+            }
+
+            // Jika di mobile, tutup sidebar setelah klik menu
+            if(window.innerWidth < 1024) {
+                toggleSidebar();
+            }
+        }
+
+        // Kalkulasi Metrik Finansial & Gudang
+        function updateDashboardMetrics() {
+            document.getElementById('metric-revenue').innerText = `Rp ${dummyAnalitik.pendapatan.toLocaleString('id-ID')}`;
+            document.getElementById('metric-sold').innerText = `${dummyAnalitik.terjual.toLocaleString('id-ID')} Pcs`;
+            document.getElementById('metric-sku').innerText = `${dataStok.length} SKU`;
+            
+            const lowStockCount = dataStok.filter(item => item.stok < 10).length;
+            const badgeKritis = document.getElementById('badge-kritis');
+            document.getElementById('metric-low').innerText = `${lowStockCount} SKU`;
+
+            if(lowStockCount > 0) {
+                badgeKritis.className = "text-[11px] bg-rose-50 text-rose-600 font-semibold px-2 py-0.5 rounded-md group-hover:scale-105 transition-transform";
+                badgeKritis.innerText = "Restock Diperlukan";
+            } else {
+                badgeKritis.className = "text-[11px] bg-emerald-50 text-emerald-600 font-semibold px-2 py-0.5 rounded-md group-hover:scale-105 transition-transform";
+                badgeKritis.innerText = "Suplai Aman";
+            }
+        }
+
+        // Rendering Baris Tabel Bergaya Korporat Menawan
+        function renderTabelStok() {
+            const tbody = document.getElementById('tabel-produk-body');
+            tbody.innerHTML = '';
+
+            dataStok.forEach((item, index) => {
+                const isLow = item.stok < 10;
+                const badgeClass = isLow ? 'bg-rose-50 text-rose-600 border border-rose-100' : 'bg-emerald-50 text-emerald-600 border border-emerald-100';
+                const badgeText = isLow ? `Kritis (${item.stok} Unit)` : `Optimal (${item.stok} Unit)`;
+
+                tbody.innerHTML += `
+                    <tr class="hover:bg-gray-50/80 transition duration-150 transform hover:translate-x-1 duration-200">
+                        <td class="px-6 py-4 font-semibold text-gray-900">${item.nama}</td>
+                        <td class="px-6 py-4 text-gray-500 font-medium">${item.kategori}</td>
+                        <td class="px-6 py-4"><span class="text-xs font-mono font-medium text-indigo-600 bg-indigo-50/70 px-2 py-1 rounded-lg">${item.varian}</span></td>
+                        <td class="px-6 py-4">
+                            <span class="px-3 py-1 rounded-lg text-xs font-bold border ${badgeClass}">
+                                ${badgeText}
+                            </span>
+                        </td>
+                        <td class="px-6 py-4 text-center">
+                            <button onclick="hapusData(${index})" class="text-xs font-bold text-rose-600 hover:text-white transition-all duration-200 bg-rose-50 hover:bg-rose-600 px-3 py-1.5 rounded-lg shadow-sm">Eliminasi</button>
+                        </td>
+                    </tr>
+                `;
+            });
+        }
+
+        // Event Input Form Data Baru + Trigger Notifikasi
+        document.getElementById('form-produk').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const nama = document.getElementById('inp-nama').value;
+            const kategori = document.getElementById('inp-kategori').value;
+            const varian = document.getElementById('inp-varian').value;
+            const stok = parseInt(document.getElementById('inp-stok').value);
+
+            dataStok.push({ id: Date.now(), nama, kategori, varian, stok });
+            localStorage.setItem('corp_stok', JSON.stringify(dataStok));
+            
+            this.reset();
+            renderTabelStok();
+            updateDashboardMetrics();
+            
+            // Berikan umpan balik visual animasi instan
+            showToast("Manifest SKU baru berhasil terekam sistem!", "success");
+        });
+
+        function hapusData(index) {
+            if(confirm("Apakah Anda yakin ingin mengeliminasi data aset inventaris ini?")) {
+                dataStok.splice(index, 1);
+                localStorage.setItem('corp_stok', JSON.stringify(dataStok));
+                renderTabelStok();
+                updateDashboardMetrics();
+                showToast("Data pakaian berhasil dieliminasi dari gudang.", "delete");
+            }
+        }
+
+        // Visualisasi Chart dengan Desain Minimalis & Gradien Cerah
+        function initCharts() {
+            // Line Chart Penjualan
+            const ctxPenjualan = document.getElementById('chartPenjualan').getContext('2d');
+            const gradienUngu = ctxPenjualan.createLinearGradient(0, 0, 0, 300);
+            gradienUngu.addColorStop(0, 'rgba(99, 102, 241, 0.2)');
+            gradienUngu.addColorStop(1, 'rgba(99, 102, 241, 0)');
+
+            new Chart(ctxPenjualan, {
+                type: 'line',
+                data: {
+                    labels: ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni'],
+                    datasets: [{
+                        label: 'Gross Profit',
+                        data: dummyAnalitik.trenBulanan,
+                        borderColor: '#4f46e5',
+                        borderWidth: 3.5,
+                        pointBackgroundColor: '#4f46e5',
+                        pointHoverRadius: 7,
+                        backgroundColor: gradienUngu,
+                        fill: true,
+                        tension: 0.35
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        y: { grid: { color: '#f3f4f6' }, ticks: { color: '#9ca3af', font: { size: 10 } } },
+                        x: { grid: { display: false }, ticks: { color: '#9ca3af', font: { size: 10 } } }
+                    }
+                }
+            });
+
+            // Doughnut Kategori Terlaris
+            const ctxKategori = document.getElementById('chartKategori').getContext('2d');
+            new Chart(ctxKategori, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Atasan', 'Bawahan', 'Dress', 'Outerwear'],
+                    datasets: [{
+                        data: dummyAnalitik.kategoriTerjual,
+                        backgroundColor: ['#4f46e5', '#10b981', '#f59e0b', '#f43f5e'],
+                        borderWidth: 4,
+                        borderColor: '#ffffff'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'bottom', labels: { color: '#4b5563', font: { size: 11, weight: '500' }, boxWidth: 10, padding: 20 } }
+                    },
+                    cutout: '75%'
+                }
+            });
+        }
+
+        // Pemuatan Sistem Sempurna
+        window.onload = function() {
+            updateDashboardMetrics();
+            renderTabelStok();
+            initCharts();
+        };
+    </script>
 </body>
 </html>
